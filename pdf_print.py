@@ -109,7 +109,7 @@ def download_urls(url_list, name_list, save_root):
         time.sleep(5)
 
 
-
+'''
 url_list =[
     'https://mp.weixin.qq.com/s?__biz=MzUxMjAwNjM2MA==&amp;mid=2247484754&amp;idx=1&amp;sn=a16c3dfa3ce8084164e7ed6bdc5db61a&amp;chksm=f82dd5fab4146db058676f49d1d16c39993ddeb5053e43132363d5651304361d170c37509792&amp;scene=27#wechat_redirect'
 ]
@@ -118,3 +118,4 @@ name_list = [
 ]
 save_root = 'D:\\web-crawler\\'
 download_urls(url_list, name_list, save_root)
+'''

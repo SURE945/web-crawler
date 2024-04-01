@@ -5,7 +5,9 @@ import json
 import time
 from datetime import date
 import requests
+import pdf_print
 
+save_root = 'D:\\web-crawler\\res\\'
 __art_infos = []
 
 '''
@@ -29,7 +31,7 @@ class ArtInfo(object):
 def get_history(offset=0, count=10, continue_flag=True):
     biz = 'MzUxMjAwNjM2MA=='  #你的biz
     uin = 'MjM4MDAxMzQxMQ=='  #你的uin
-    key = 'cba1c122413701d685ae2ea8eb713e874673a2c27f4715a4e5a2324718c92e248a48b1f26c292643f4d59869302fe4f83b7ebb2bf8ca699fa0b4cda7540f0d078497ed7beb2cd00ae23f9e9171baaab775cc7ca804c488b35c2203c6e43c796354511f2c39810ed47be04eb6d5fe1f0744290ebd6255bce50c5d14975b76fdd6'  #你的key
+    key = '7d521e321d0bd8f89733bd304d7639232f539288bcc141570457e343e0fe873f5d27d7b7dc7dc75746aefa5046a37e8152b6c442ba806017e746c6ddc593c3f3db4c6d8362519ced9e4bb563ee3e9ba176988ebb89cef38b773bafa02d867e5695d727a727acfbae173b00ef534a031b1f76b06592fcfc95e7980d4072f15844'  #你的key
     # pass_ticket = 'tS1eMbmDmdNLrZP5/55e6BrLg9TWDuGOFkOXYPIXM8N1SWkZbAEGALDh6kaMQO/GPFT1emxuf j0Rnxxlq iUw=='
 
     url = f'https://mp.weixin.qq.com/mp/profile_ext?action=getmsg&__biz={biz}&f=json&offset={offset}&count={count}&is_ok=1&scene=124&uin={uin}&key={key}'
@@ -81,11 +83,16 @@ def get_art_info(json_art_info):
 
 
 def save_art_info(art_infos):
+    for info in art_infos:
+        pdf_print.print_url_to_pdf(info.content_url, save_root, info.title)
+        time.sleep(5)
+    '''
     with open('art_infos.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['pub_date', 'title', 'cover', 'content_url'])
         for info in art_infos:
             writer.writerow([info.pub_date, info.title, info.cover, info.content_url])
+    '''
 
 
 def main():
