@@ -28,10 +28,7 @@ class ArtInfo(object):
         self.content_url = json_info.get('content_url')
 
 
-def get_history(offset=0, count=10, continue_flag=True):
-    biz = 'MzUxMjAwNjM2MA=='  #你的biz
-    uin = 'MjM4MDAxMzQxMQ=='  #你的uin
-    key = '7d521e321d0bd8f89733bd304d7639232f539288bcc141570457e343e0fe873f5d27d7b7dc7dc75746aefa5046a37e8152b6c442ba806017e746c6ddc593c3f3db4c6d8362519ced9e4bb563ee3e9ba176988ebb89cef38b773bafa02d867e5695d727a727acfbae173b00ef534a031b1f76b06592fcfc95e7980d4072f15844'  #你的key
+def get_history(biz, uin, key, offset=0, count=10, continue_flag=True, max=10):
     # pass_ticket = 'tS1eMbmDmdNLrZP5/55e6BrLg9TWDuGOFkOXYPIXM8N1SWkZbAEGALDh6kaMQO/GPFT1emxuf j0Rnxxlq iUw=='
 
     url = f'https://mp.weixin.qq.com/mp/profile_ext?action=getmsg&__biz={biz}&f=json&offset={offset}&count={count}&is_ok=1&scene=124&uin={uin}&key={key}'
@@ -46,12 +43,11 @@ def get_history(offset=0, count=10, continue_flag=True):
         get_art_info(art)
 
     # can_msg_continue 是用来判断是否可以继续获取文章的
-    if js.get('can_msg_continue') and continue_flag:
+    if js.get('can_msg_continue') and continue_flag and (offset < max):
         offset = offset + count
         print(f'===继续获取下一页,offset={offset}')
         time.sleep(10)  # 防封
-        get_history(offset, 10, True) # 测试一次就不继续
-
+        get_history(biz, uin, key, offset, 10, True) # 测试一次就不继续
     else:
         print('结束，没有更多文章。')
 
@@ -82,22 +78,35 @@ def get_art_info(json_art_info):
                 # break
 
 
-def save_art_info(art_infos):
-    for info in art_infos:
-        pdf_print.print_url_to_pdf(info.content_url, save_root, info.title)
-        time.sleep(5)
+def save_art_info():
+    '''
+    for art_infos in __art_infos_queue:
+        for info in art_infos:
+            pdf_print.print_url_to_pdf(info.content_url, save_root, info.title)
+            time.sleep(5)
     '''
     with open('art_infos.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['pub_date', 'title', 'cover', 'content_url'])
-        for info in art_infos:
+        j = 0
+        for info in __art_infos:
+            j = j + 1
+            print("j=%d",j)
             writer.writerow([info.pub_date, info.title, info.cover, info.content_url])
-    '''
 
 
 def main():
-    get_history()
-    save_art_info(__art_infos)
+    print("java-tech")
+    biz = 'MzUxMjAwNjM2MA=='
+    uin = 'MjM4MDAxMzQxMQ=='
+    key = '7d521e321d0bd8f8c7fd2bb7c3d8a69e81e51193b1fd1844497fe9c9a2cc62b2f8d1750312b6ea44076ace848866a203c8e3152b772005181abdbeeedc2e15001df3e403d314d15b61a2b915176c6c0cc16acb0ce8cdccf71845ed628a6930aae1a2c505ef1fd805b2d9f4af42e1903fa2192aec7751f46d0e43bccd969f7915'
+    get_history(biz, uin, key)
+    print("java-tech")
+    biz = 'MzUxMjAwNjM2MA=='
+    uin = 'MjM4MDAxMzQxMQ=='
+    key = '7d521e321d0bd8f8c7fd2bb7c3d8a69e81e51193b1fd1844497fe9c9a2cc62b2f8d1750312b6ea44076ace848866a203c8e3152b772005181abdbeeedc2e15001df3e403d314d15b61a2b915176c6c0cc16acb0ce8cdccf71845ed628a6930aae1a2c505ef1fd805b2d9f4af42e1903fa2192aec7751f46d0e43bccd969f7915'
+    get_history(biz, uin, key)
+    save_art_info()
 
 
 if __name__ == '__main__':
