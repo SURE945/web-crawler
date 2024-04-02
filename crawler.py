@@ -67,7 +67,7 @@ def get_art_info(json_art_info, cmp_date, idx):
         global __record_idx
         if __record_idx != idx:
             __record_idx = idx
-            __latest_date.append(cmp_date)
+            __latest_date.append(pub_date)
         if info:
             # 头条消息
             art_info0 = ArtInfo(pub_date, info)
@@ -99,5 +99,6 @@ def save_art_info():
             writer.writerow([info.pub_date, info.title, info.cover, info.content_url])
     with open('dates.csv', 'w', newline='') as f:
         writer = csv.writer(f)
+        writer.writerow(['date'])
         for date in __latest_date:
             writer.writerow([date])
