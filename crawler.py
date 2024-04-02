@@ -4,12 +4,15 @@ import csv
 import json
 import time
 from datetime import date
+import datetime
 import requests
 import pdf_print
 
 save_root = 'D:\\web-crawler\\res\\'
 __art_infos = []
-
+time_str = "2023-10-2 16:04:30"
+cmp_time = datetime.datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
+cmp_date = cmp_time.strftime("%Y-%m-%d")
 '''
 日期：2024年2月23日
 公众号ID：java-tech
@@ -60,6 +63,7 @@ def get_art_info(json_art_info):
     pub_datetime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(datetime_ms))
     #print('pub_datetime=', pub_datetime)
     pub_date = str(date.fromtimestamp(datetime_ms))
+    print('pub_date=', pub_date)
     info = json_art_info.get('app_msg_ext_info')
     if info:
         # 头条消息
@@ -89,4 +93,5 @@ def save_art_info():
         writer = csv.writer(f)
         writer.writerow(['pub_date', 'title', 'cover', 'content_url'])
         for info in __art_infos:
+            print(info.pub_date,">",cmp_date,(info.pub_date>cmp_date))
             writer.writerow([info.pub_date, info.title, info.cover, info.content_url])
