@@ -1,18 +1,22 @@
 import crawler
 
-def main():
-    print("java-tech")
-    biz = 'MzUxMjAwNjM2MA=='
-    uin = 'MjM4MDAxMzQxMQ=='
-    key = 'cba1c122413701d62b24e7a0d21679a0639c52ac8eefcb94eb16a4af70a145540b641b8a6c10a724e4442b19e080fc1d0666114eb0fa42b40f3178fcd2298aa95eaee3aeedfec8cd7aa0bd6c947bfb0a3db39b3dbd7cadfe6ff32b0154c0cc742c50f28f19f292c2f92610ff11eb1d03764fac9100103638a05d118751f05861'
-    crawler.get_history(biz, uin, key)
-    print("java-tech")
-    biz = 'MzUxMjAwNjM2MA=='
-    uin = 'MjM4MDAxMzQxMQ=='
-    key = 'cba1c122413701d62b24e7a0d21679a0639c52ac8eefcb94eb16a4af70a145540b641b8a6c10a724e4442b19e080fc1d0666114eb0fa42b40f3178fcd2298aa95eaee3aeedfec8cd7aa0bd6c947bfb0a3db39b3dbd7cadfe6ff32b0154c0cc742c50f28f19f292c2f92610ff11eb1d03764fac9100103638a05d118751f05861'
-    crawler.get_history(biz, uin, key)
-    crawler.save_art_info()
+date_str = "2023-04-12"
 
+def info():
+    print("java-tech")
+    biz = 'MzUxMjAwNjM2MA=='
+    uin = 'MjM4MDAxMzQxMQ=='
+    key = '7d521e321d0bd8f88e8a10f964d585b19acfbee5c498bc320bd3a1eb70b2ea1a5ccd4b4d2eb56808ef700d0155501a40ce3919f3b8f346f5b84b23b0528672613ab7b823f2f8d7f92a175a34640c31c6155e0062bcfd18c104f353666cfcfb7876e55b96e6189e9fe976b1954347ac51e79bff05cc2060a233bf5e0d8c1646ed'
+    crawler.get_history(biz, uin, key, date_str, 1)
+    print("java-tech")
+    biz = 'MzUxMjAwNjM2MA=='
+    uin = 'MjM4MDAxMzQxMQ=='
+    key = '7d521e321d0bd8f88e8a10f964d585b19acfbee5c498bc320bd3a1eb70b2ea1a5ccd4b4d2eb56808ef700d0155501a40ce3919f3b8f346f5b84b23b0528672613ab7b823f2f8d7f92a175a34640c31c6155e0062bcfd18c104f353666cfcfb7876e55b96e6189e9fe976b1954347ac51e79bff05cc2060a233bf5e0d8c1646ed'
+    crawler.get_history(biz, uin, key, date_str, 2)
+
+def main():
+    info()
+    crawler.save_art_info()
 
 if __name__ == '__main__':
     main()
