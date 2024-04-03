@@ -5,7 +5,7 @@ import requests
 import csv
 import random
 import time
-import pdf_print
+from src import pdf_print
 from pprint import pprint
 
 save_root = 'D:\\web-crawler\\res\\'

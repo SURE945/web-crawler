@@ -1,5 +1,5 @@
-import new_crawler
-import file_reader
+from src import new_crawler
+from src import file_reader
 import sys
 
 dates_csv = 'D:\\web-crawler\\data\\dates.csv'
