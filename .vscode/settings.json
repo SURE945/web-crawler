@@ -1,7 +1,5 @@
 {
     "python.analysis.extraPaths": [
         "D:\\ProgramData\\anaconda3\\Lib\\site-packages",
-        "D:\\ProgramData\\anaconda3\\Lib\\site-packages\\typings",
-        "D:\\ProgramData\\anaconda3\\Lib\\site-packages\\typings\\selenium\\webdriver\\common\\keys.pyi"
     ]
 }
