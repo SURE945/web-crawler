@@ -1,5 +1,7 @@
 *.csv
 !dates.csv
+!dates_test.csv
+!keywords.csv
 *.pdf
 __pycache__/
 .vscode/

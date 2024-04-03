@@ -11,14 +11,6 @@ from pprint import pprint
 save_root = 'D:\\web-crawler\\res\\'
 article_data  = []
 __latest_date = []
-__key_words = ["卫星"
-               ,"卫星互联网"
-               , "手机"
-               , "移动通信"
-               , "5G"
-               , "6G"
-               , "NTN"
-               , "3GPP"]
 
 class ArtInfo(object):
     def __init__(self, title, url, date):
@@ -77,7 +69,7 @@ def contains_any_keyword(string, keywords):
             return True
     return False
 
-def get_articles(nickname, date, flag, begin=0, count=5):
+def get_articles(nickname, date, flag, keywords, begin=0, count=5):
     __record_idx = 0
     for i in range(begin, count, 5):
         print("==第", (i / 5 + 1), "页==")
@@ -106,7 +98,7 @@ def get_articles(nickname, date, flag, begin=0, count=5):
                     if __record_idx == 0:
                         __latest_date.append(str(item.get('create_time')))
                         __record_idx = 1
-                    if contains_any_keyword(item.get('title'), __key_words):
+                    if contains_any_keyword(item.get('title'), keywords):
                         result = ArtInfo(item.get('title'), item.get('link'), str(item.get('create_time')))
                         article_data.append(result)
                 # return msg_json.get('app_msg_list')
@@ -138,7 +130,7 @@ def in_pdf():
         for date in __latest_date:
             writer.writerow([date])
 
-def crawl(nickname, date=1671546449, flag='offical'):
+def crawl(nickname, keywords, date=1671546449, flag='offical'):
     __headers["Cookie"] = cookie
     __params["token"] = token
 
@@ -146,4 +138,4 @@ def crawl(nickname, date=1671546449, flag='offical'):
     print(nickname)
     __params["fakeid"] = fakeid
 
-    get_articles(nickname, date, flag, 0, 10)
+    get_articles(nickname, date, flag, keywords, 0, 10)
