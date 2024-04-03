@@ -59,8 +59,8 @@ def print_url_to_pdf(url, save_root,
 
     driver = webdriver.Chrome(options=chrome_options)
 
-    print('-'*100)
-    print(f'now: url: {url}')
+    #print('-'*100)
+    #print(f'now: url: {url}')
     driver.get(url)
 
     # 获取当前所有窗口的句柄
@@ -81,7 +81,7 @@ def print_url_to_pdf(url, save_root,
     # 计算需要滚动的次数
     num_scrolls = int((driver.execute_script("return document.body.scrollHeight;") - current_scroll_position) / scroll_distance)
 
-    print('scroll pages...')
+    #print('scroll pages...')
     # 循环滚动页面
     for _ in range(num_scrolls):
         driver.execute_script(f"window.scrollBy(0, {scroll_distance});")
@@ -105,7 +105,7 @@ def print_url_to_pdf(url, save_root,
 
 def download_urls(url_list, name_list, save_root):
     for url, name in zip(url_list, name_list):
-        print_url_to_pdf(url, save_root, name)
+        #print_url_to_pdf(url, save_root, name)
         time.sleep(5)
 
 

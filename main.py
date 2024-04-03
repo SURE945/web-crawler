@@ -20,12 +20,12 @@ def main():
     csv_data = file_reader.read_csv_file(csv_file)
     dates = [row[0] for row in csv_data]
     accounts = [row[1] for row in csv_data]
-
+    print(accounts)
     for i in range(len(csv_data)):
         if (i != 0):
             new_crawler.crawl(accounts[i], keywords, int(dates[i]), flag)
     if (flag == 'offical'):
-        new_crawler.in_pdf()
+        new_crawler.in_pdf(accounts)
 
 if __name__ == '__main__':
     main()

@@ -118,17 +118,19 @@ def in_csv(title):
         for info in article_data:
             writer.writerow([info.date, info.title, info.url])
 
-def in_pdf():
+def in_pdf(accounts):
     for info in article_data:
         pdf_print.print_url_to_pdf(info.url, save_root, info.title)
         time.sleep(5)
 
     # update dates
+    headers = ['date', 'account']
     with open('data\\dates.csv', 'w', newline='',encoding='utf-8') as f:
         writer = csv.writer(f)
-        writer.writerow(['date'])
-        for date in __latest_date:
-            writer.writerow([date])
+        writer.writerow(headers)
+        accounts = accounts[1:]
+        for row in zip(__latest_date, accounts):
+            writer.writerow(row)
 
 def crawl(nickname, keywords, date=1671546449, flag='offical'):
     __headers["Cookie"] = cookie
