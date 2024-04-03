@@ -16,7 +16,6 @@ def main():
         return
 
     keywords = file_reader.read_csv_column_as_strings(keywords_csv, 0)
-    print(keywords)
     csv_file = dates_csv if flag == 'offical' else dates_test_csv
     csv_data = file_reader.read_csv_file(csv_file)
     dates = [row[0] for row in csv_data]
