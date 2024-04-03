@@ -12,12 +12,6 @@ __art_infos = []
 __latest_date = []
 __record_idx  = 0
 
-'''
-日期：2024年2月23日
-公众号ID：java-tech
-公众号：Java实用技术手册
-声明：本文仅供技术研究，请勿用于非法采集，后果自负。
-'''
 class ArtInfo(object):
     """
     文章信息：包括日期、标题、题图、链接
