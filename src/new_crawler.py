@@ -7,6 +7,7 @@ import random
 import time
 from src import pdf_print
 from pprint import pprint
+import re
 
 save_root = 'D:\\web-crawler\\res\\'
 article_data  = []
@@ -65,7 +66,8 @@ def contains_any_keyword(string, keywords):
     如果字符串包含关键词集合中的任意一个，则返回 True，否则返回 False。
     """
     for keyword in keywords:
-        if keyword in string:
+        pattern = re.compile(keyword)
+        if pattern.search(string):
             return True
     return False
 
