@@ -109,7 +109,7 @@ def get_articles(nickname, date, flag, keywords, begin=0, count=5):
 
         time.sleep(random.randint(1,10))
         if (flag == 'test'):
-            in_csv(nickname + ".csv")
+            in_csv("data\\" + nickname + ".csv")
 
 def in_csv(title):
     with open(title, 'w', newline='',encoding='utf-8') as f:
@@ -124,7 +124,7 @@ def in_pdf():
         time.sleep(5)
 
     # update dates
-    with open('dates.csv', 'w', newline='',encoding='utf-8') as f:
+    with open('data\\dates.csv', 'w', newline='',encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(['date'])
         for date in __latest_date:

@@ -2,9 +2,9 @@ import new_crawler
 import file_reader
 import sys
 
-dates_csv = 'D:\\web-crawler\\dates.csv'
-dates_test_csv = 'D:\\web-crawler\\dates_test.csv'
-keywords_csv = 'D:\\web-crawler\\keywords.csv'
+dates_csv = 'D:\\web-crawler\\data\\dates.csv'
+dates_test_csv = 'D:\\web-crawler\\data\\dates_test.csv'
+keywords_csv = 'D:\\web-crawler\\data\\keywords.csv'
 
 def main():
     if len(sys.argv) != 2:
