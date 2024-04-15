@@ -28,8 +28,8 @@ __params = {
     "f": "json",
 }
 
-cookie = "appmsglist_action_3915678078=card; RK=uQmp6z+tS/; ptcz=b81b78f64c1c6ebbefb28e5be19b795e7228f47e7f94cfa90cfbb8e19a50c1a6; pac_uid=0_e512eac24f90a; iip=0; pgv_pvid=6462161322; _qimei_uuid42=17b0e0a1e2f1007cc0eaa12740ee2e35efabe39a41; _qimei_fingerprint=cd838bb3f668d5a678cc7c3f05c52027; _qimei_q36=; _qimei_h38=8f9557bdc0eaa12740ee2e3502000000d17b0e; ua_id=hzpdFGya3ZJMGfJuAAAAAFHE1duewBS8PoBQDz7W-tM=; wxuin=11936855256056; data_bizuin=3915678078; bizuin=3915678078; data_ticket=FC6+Dw9fp8C/gZnG4hWG9cbPaj0ZkuKOzU9HlkCYanvuLNdlTES8K+7Kq9yIUO6T; rand_info=CAESIG8xEDNTEQcvQLdEE/4O+Ev9z/f/+Pmg3rVLKiKEZJG2; slave_bizuin=3915678078; slave_user=gh_d23bfd7b43a5; slave_sid=Qlp2U0N6U3lCdkRtWTRVbHN5Vll2S2EwcnFGdFNBU0FJWWhsaUo1eUJIWlVKbktWelVpTDZCcVEwUXNwOVRqSzk5cFpRdU1pN3VfOUtQOVQyQk51UWVQaE1hWDE1eTFjUWpNV1UzZ0dYblNEcGNQUzBadUpTU3N2a1BOSTB5dGRoOEF4V0ZwdUFCRk5kWTJI; _clck=3915678078|1|fkm|0; _clsk=5teb5w|1712110119848|6|1|mp.weixin.qq.com/weheat-agent/payload/record"
-token = "1712078137"
+cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; poc_sid=HIV8-mWjBywUwpszCqH2UZMSI-IEyEd82670mREj; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; _clck=1168l8z|1|fky|0; wxuin=13167235767384; uuid=894e247977326b011791c35f785a7e89; rand_info=CAESIO2CM1nCAJS/OiOhF+vOSJhGxdEjjKvcMFC8SaGYkNe8; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=fHFMqwFyoPOXqMa/6NmrJbX6JdvhaciveiUf1a8VvCg81ii6hgJj4kqkwNmMMzkC; slave_sid=bFFURXc1UzFqVmRnX1NnUXNibVFyS1RVTzZJNVB6UG5VUDk1X0liR0lxWFNfQU5JMEdYRzZTTlFRNlhHWF9VdU80V0lMNlYyd1lXeHRGWmVzTF9YT0VSSzhiYzk1Q1BraGszenF4U0JyeVJMTUZGVXY3Q3hWSTVzOGZXblp0Z3pyWFlYRDZiYm1pelFETFl3; slave_user=gh_d23bfd7b43a5; xid=91d75efd9d9e7b97955cc7cdb3432f84; mm_lang=zh_CN; _clsk=10nfzgx|1713167185409|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
+token  = "967652256"
 
 def get_fakeid(nickname, begin=0, count=5):
     search_url = "https://mp.weixin.qq.com/cgi-bin/searchbiz"
