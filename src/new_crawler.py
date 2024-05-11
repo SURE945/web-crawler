@@ -5,7 +5,7 @@ import requests
 import csv
 import random
 import time
-from src import pdf_print
+from src import new_printer
 from pprint import pprint
 import re
 
@@ -28,8 +28,8 @@ __params = {
     "f": "json",
 }
 
-cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; poc_sid=HIV8-mWjBywUwpszCqH2UZMSI-IEyEd82670mREj; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; _clck=1168l8z|1|fky|0; wxuin=13167235767384; uuid=894e247977326b011791c35f785a7e89; rand_info=CAESIO2CM1nCAJS/OiOhF+vOSJhGxdEjjKvcMFC8SaGYkNe8; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=fHFMqwFyoPOXqMa/6NmrJbX6JdvhaciveiUf1a8VvCg81ii6hgJj4kqkwNmMMzkC; slave_sid=bFFURXc1UzFqVmRnX1NnUXNibVFyS1RVTzZJNVB6UG5VUDk1X0liR0lxWFNfQU5JMEdYRzZTTlFRNlhHWF9VdU80V0lMNlYyd1lXeHRGWmVzTF9YT0VSSzhiYzk1Q1BraGszenF4U0JyeVJMTUZGVXY3Q3hWSTVzOGZXblp0Z3pyWFlYRDZiYm1pelFETFl3; slave_user=gh_d23bfd7b43a5; xid=91d75efd9d9e7b97955cc7cdb3432f84; mm_lang=zh_CN; _clsk=10nfzgx|1713167185409|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
-token  = "967652256"
+cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; wxuin=13167235767384; mm_lang=zh_CN; rewardsn=; wxtokenkey=777; _clck=1168l8z|1|flo|0; uuid=5d6eed864a7ab2c9b0893d46cdeb0b7e; rand_info=CAESIDyw4djzOvTSJH0RnhtUxu3hnHigv6Fr5bcu+nWYKCqg; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=iS7amOaLG/TdtkVHKvaI0zJ/fVGTVvldegzK23K9VmWLPCwih/jOIBeEoQBvcTOQ; slave_sid=aHYwaVNuWjl2UGh0SlViQ2Q2dkE4TkljM1J0RDdRSHZ2RmE2ekRLcDJzZFZZZkZidHNxc09POFBMOEo5Tl9KX2pmNlRLTzF6MTUxQWQ0Y0c5cHdEMmZwenZHekNrMlQ3SDhYWlJRM21JUnFyRUZ0Mzl3T3lBeWhsZlpRUEs1YUhiU3AzME5wWDN5ZzJEdmFE; slave_user=gh_d23bfd7b43a5; xid=c237f56f2f93ed95721cc804bb59a0f9; _clsk=1yepdjy|1715411747549|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
+token  = "577787959"
 
 def get_fakeid(nickname, begin=0, count=5):
     search_url = "https://mp.weixin.qq.com/cgi-bin/searchbiz"
@@ -122,7 +122,7 @@ def in_csv(title):
 
 def in_pdf(accounts):
     for info in article_data:
-        pdf_print.print_url_to_pdf(info.url, save_root, info.title)
+        new_printer.print_url_to_pdf(info.url, save_root, info.title)
         time.sleep(5)
 
     # update dates
