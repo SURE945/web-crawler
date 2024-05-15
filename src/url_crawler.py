@@ -103,7 +103,7 @@ def get_articles(nickname, date, flag, keywords, begin=0, count=5):
                             if __record_idx == 0:
                                 __latest_date.append(str(item.get('create_time')))
                                 __record_idx = 1
-                            print(item.get('title'))
+                            #print(item.get('title'))
                             if contains_any_keyword(item.get('title'), keywords):
                                 result = ArtInfo(item.get('title'), item.get('link'), str(item.get('create_time')))
                                 article_data.append(result)
