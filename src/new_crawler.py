@@ -12,6 +12,8 @@ import re
 save_root = 'D:\\web-crawler\\res\\'
 article_data  = []
 __latest_date = []
+check_article_num = 10 # 查看前多少篇文章
+max_article_num = 5 # 检索到的文章最大的数量
 
 class ArtInfo(object):
     def __init__(self, title, url, date):
@@ -73,7 +75,11 @@ def contains_any_keyword(string, keywords):
 
 def get_articles(nickname, date, flag, keywords, begin=0, count=5):
     __record_idx = 0
+    __article_num = 0
+    __article_data = []
+    
     for i in range(begin, count, 5):
+        __end = False
         print("==第", (i / 5 + 1), "页==")
         art_url = "https://mp.weixin.qq.com/cgi-bin/appmsg"
         art_params = {
@@ -86,48 +92,55 @@ def get_articles(nickname, date, flag, keywords, begin=0, count=5):
         __params.update(art_params)
 
         try:
-            rsp_data = __session.get(art_url, headers=__headers, params=__params)
-            #pprint(rsp_data)
-            if rsp_data:
-                msg_json = rsp_data.json()
-                #pprint(msg_json)
-
-            if 'app_msg_list' in msg_json.keys():
-                #result = [item.get('title') + ': ' + item.get('link') + ': ' + str(item.get('create_time')) for item in msg_json.get('app_msg_list') ]
-                for item in msg_json.get('app_msg_list'):
-                    if item.get('create_time') <= date:
-                        return
-                    if __record_idx == 0:
-                        __latest_date.append(str(item.get('create_time')))
-                        __record_idx = 1
-                    if contains_any_keyword(item.get('title'), keywords):
-                        result = ArtInfo(item.get('title'), item.get('link'), str(item.get('create_time')))
-                        article_data.append(result)
-                # return msg_json.get('app_msg_list')
-            else:
-                return []
+            while not __end:
+                rsp_data = __session.get(art_url, headers=__headers, params=__params)
+                if rsp_data:
+                    msg_json = rsp_data.json()
+                    if 'app_msg_list' in msg_json.keys():
+                        for item in msg_json.get('app_msg_list'):
+                            if item.get('create_time') <= date:
+                                break
+                            if __record_idx == 0:
+                                __latest_date.append(str(item.get('create_time')))
+                                __record_idx = 1
+                            print(item.get('title'))
+                            if contains_any_keyword(item.get('title'), keywords):
+                                result = ArtInfo(item.get('title'), item.get('link'), str(item.get('create_time')))
+                                article_data.append(result)
+                                __article_data.append(result)
+                                __article_num = __article_num + 1
+                            if __article_num >= max_article_num:
+                                break
+                    else:
+                        print("访问被限制")
+                if __record_idx == 0:
+                    __record_idx = 1
+                    __latest_date.append(date)
+                __end = True
         except Exception as e:
             raise Exception(f'获取公众号{nickname}的文章失败，e={traceback.format_exc()}')
 
         time.sleep(random.randint(1,10))
-        if (flag == 'test'):
-            in_csv("data\\" + nickname + ".csv")
+    in_csv("data\\test\\" + nickname + ".csv", __article_data)
 
-def in_csv(title):
-    with open(title, 'w', newline='',encoding='utf-8') as f:
+def in_csv(title, data_set):
+    with open(title, 'w+', newline='',encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(['date', 'title', 'url'])
-        for info in article_data:
+        for info in data_set:
             writer.writerow([info.date, info.title, info.url])
 
-def in_pdf(accounts):
-    for info in article_data:
-        pdf_print.print_url_to_pdf(info.url, save_root, info.title)
-        time.sleep(5)
+def in_pdf(flag):
+    if (flag == 'offical'):
+        for info in article_data:
+            pdf_print.print_url_to_pdf(info.url, save_root, info.title)
+            time.sleep(5)
 
+def update_dates(accounts, flag):
+    csv_name = 'data\\dates.csv' if flag == 'offical' else 'data\\dates_test.csv'
     # update dates
     headers = ['date', 'account']
-    with open('data\\dates.csv', 'w', newline='',encoding='utf-8') as f:
+    with open(csv_name, 'w+', newline='',encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(headers)
         accounts = accounts[1:]
@@ -142,4 +155,4 @@ def crawl(nickname, keywords, date=1671546449, flag='offical'):
     print(nickname)
     __params["fakeid"] = fakeid
 
-    get_articles(nickname, date, flag, keywords, 0, 50)
+    get_articles(nickname, date, flag, keywords, 0, check_article_num)
