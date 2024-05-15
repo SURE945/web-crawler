@@ -5,7 +5,7 @@ import requests
 import csv
 import random
 import time
-from src import pdf_print
+from . import pdf_printer
 from pprint import pprint
 import re
 
@@ -133,7 +133,7 @@ def in_csv(title, data_set):
 def in_pdf(flag):
     if (flag == 'offical'):
         for info in article_data:
-            pdf_print.print_url_to_pdf(info.url, save_root, info.title)
+            pdf_printer.print_url_to_pdf(info.url, save_root, info.title)
             time.sleep(5)
 
 def update_dates(accounts, flag):

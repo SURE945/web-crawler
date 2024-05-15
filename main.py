@@ -1,4 +1,4 @@
-from src import new_crawler
+from src import url_crawler
 from src import file_reader
 import sys
 
@@ -26,13 +26,13 @@ def main():
     # 2. get articles
     for i in range(len(csv_data)):
         if (i != 0):
-            new_crawler.crawl(accounts[i], keywords, int(dates[i]), flag)
+            url_crawler.crawl(accounts[i], keywords, int(dates[i]), flag)
 
     # 3. print to pdf
-    new_crawler.in_pdf(flag)
+    url_crawler.in_pdf(flag)
 
     # 4. update memory
-    new_crawler.update_dates(accounts, flag)
+    url_crawler.update_dates(accounts, flag)
 
 if __name__ == '__main__':
     main()
