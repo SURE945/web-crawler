@@ -5,7 +5,7 @@ import requests
 import csv
 import random
 import time
-from src import new_printer
+from src import pdf_print
 from pprint import pprint
 import re
 
@@ -28,8 +28,8 @@ __params = {
     "f": "json",
 }
 
-cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; wxuin=13167235767384; mm_lang=zh_CN; rewardsn=; wxtokenkey=777; _clck=1168l8z|1|flo|0; uuid=5d6eed864a7ab2c9b0893d46cdeb0b7e; rand_info=CAESIDyw4djzOvTSJH0RnhtUxu3hnHigv6Fr5bcu+nWYKCqg; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=iS7amOaLG/TdtkVHKvaI0zJ/fVGTVvldegzK23K9VmWLPCwih/jOIBeEoQBvcTOQ; slave_sid=aHYwaVNuWjl2UGh0SlViQ2Q2dkE4TkljM1J0RDdRSHZ2RmE2ekRLcDJzZFZZZkZidHNxc09POFBMOEo5Tl9KX2pmNlRLTzF6MTUxQWQ0Y0c5cHdEMmZwenZHekNrMlQ3SDhYWlJRM21JUnFyRUZ0Mzl3T3lBeWhsZlpRUEs1YUhiU3AzME5wWDN5ZzJEdmFE; slave_user=gh_d23bfd7b43a5; xid=c237f56f2f93ed95721cc804bb59a0f9; _clsk=1yepdjy|1715411747549|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
-token  = "577787959"
+cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; wxuin=13167235767384; mm_lang=zh_CN; uuid=01536c6ae568451af0aa8242d24e6219; _clck=1168l8z|1|flr|0; rand_info=CAESIDQm88zf95c9UqPdZAaCiuCn9Pir4n1cd6zZE1XsBCXa; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=bwv4jfTmApqjMW8/tRZXCfdfm5r75E40B10kKAiNyk7MqhHvcYwoxDM97Z/XpxQr; slave_sid=b3kyS0trdFhxN213Ul9EeFJpU1ZhbldVZEZUd1hjRkVyT3NXWUVyM2E1N2Jjb3RPZWExaWhWdGRwY0hfNG84a3JJa0pZbjJ1RF9LeFlzVGNNdlhuaWdlUWpDRmRnazFFdjZuR0tpRk1WRFJrZF9KZW5FWDBOcUJiSkRTWGgzaGFBdzJJalBTYUQ0RUdsQkpJ; slave_user=gh_d23bfd7b43a5; xid=9960b2b195f5ccdecff80e1e8151567f; _clsk=19k2666|1715673179446|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
+token  = "995544230"
 
 def get_fakeid(nickname, begin=0, count=5):
     search_url = "https://mp.weixin.qq.com/cgi-bin/searchbiz"
@@ -122,7 +122,7 @@ def in_csv(title):
 
 def in_pdf(accounts):
     for info in article_data:
-        new_printer.print_url_to_pdf(info.url, save_root, info.title)
+        pdf_print.print_url_to_pdf(info.url, save_root, info.title)
         time.sleep(5)
 
     # update dates
@@ -142,4 +142,4 @@ def crawl(nickname, keywords, date=1671546449, flag='offical'):
     print(nickname)
     __params["fakeid"] = fakeid
 
-    get_articles(nickname, date, flag, keywords, 0, 10)
+    get_articles(nickname, date, flag, keywords, 0, 50)
