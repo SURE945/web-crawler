@@ -4,3 +4,4 @@
 !keywords.csv
 *.pdf
 __pycache__/
+log.txt

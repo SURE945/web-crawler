@@ -6,6 +6,7 @@ import csv
 import random
 import time
 from . import pdf_printer
+from . import log_printer
 from pprint import pprint
 import re
 
@@ -80,7 +81,7 @@ def get_articles(nickname, date, flag, keywords, begin=0, count=5):
     
     for i in range(begin, count, 5):
         __end = False
-        print("==第", (i / 5 + 1), "页==")
+        local_print((i / 5 + 1), end='', flush=True)
         art_url = "https://mp.weixin.qq.com/cgi-bin/appmsg"
         art_params = {
         "query": '',
@@ -97,12 +98,14 @@ def get_articles(nickname, date, flag, keywords, begin=0, count=5):
                 if rsp_data:
                     msg_json = rsp_data.json()
                     if 'app_msg_list' in msg_json.keys():
+                        local_print(',', end='', flush=True)
                         for item in msg_json.get('app_msg_list'):
                             if item.get('create_time') <= date:
                                 in_csv("data\\test\\" + nickname + ".csv", __article_data)
                                 if __record_idx == 0:
                                     __record_idx = 1
                                     __latest_date.append(date)
+                                local_print("end")
                                 return
                             if __record_idx == 0:
                                 __latest_date.append(str(item.get('create_time')))
@@ -116,7 +119,12 @@ def get_articles(nickname, date, flag, keywords, begin=0, count=5):
                             if __article_num >= max_article_num:
                                 break
                     else:
-                        print("访问被限制")
+                        in_csv("data\\test\\" + nickname + ".csv", __article_data)
+                        if __record_idx == 0:
+                            __record_idx = 1
+                            __latest_date.append(date)
+                        local_print(" 访问被限制, end")
+                        return
                 if __record_idx == 0:
                     __record_idx = 1
                     __latest_date.append(date)
@@ -139,6 +147,10 @@ def in_pdf(flag):
             pdf_printer.print_url_to_pdf(info.url, save_root, info.title)
             time.sleep(5)
 
+def local_print(content, end='\n', flush=True):
+    log_printer.append_to_file(content, end=end, flush=flush)
+    print(content, end=end, flush=flush)
+
 def update_dates(accounts, flag):
     csv_name = 'data\\dates.csv' if flag == 'offical' else 'data\\dates_test.csv'
     # update dates
@@ -155,7 +167,7 @@ def crawl(nickname, keywords, date=1671546449, flag='offical'):
     __params["token"] = token
 
     fakeid = get_fakeid(nickname)
-    print(nickname)
+    local_print(nickname, end='...', flush=True)
     __params["fakeid"] = fakeid
 
     get_articles(nickname, date, flag, keywords, 0, check_article_num)

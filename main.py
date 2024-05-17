@@ -1,5 +1,6 @@
 from src import url_crawler
 from src import file_reader
+from src import log_printer
 import sys
 
 dates_csv = 'D:\\web-crawler\\data\\dates.csv'
@@ -17,6 +18,7 @@ def main():
         return
 
     # 1. initialize
+    log_printer.initialize_file()
     keywords = file_reader.read_csv_column_as_strings(keywords_csv, 0)
     csv_file = dates_csv if flag == 'offical' else dates_test_csv
     csv_data = file_reader.read_csv_file(csv_file)
