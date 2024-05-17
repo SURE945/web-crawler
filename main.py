@@ -30,7 +30,7 @@ def main():
         # 3. get articles
         crawler_obj.crawl(accounts[i], keywords, flag)
         # 4. print to pdf
-        # crawler_obj.in_pdf(flag)
+        crawler_obj.in_pdf(flag)
 
 if __name__ == '__main__':
     main()
