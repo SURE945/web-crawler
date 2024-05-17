@@ -2,11 +2,11 @@ import os,json,time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
-import log_printer
+from . import log_printer
 
 def local_print(content, end='\n', flush=True):
-    log_printer.append_to_file(content, end=end, flush=flush)
     print(content, end=end, flush=flush)
+    log_printer.append_to_file(content, end=end, flush=flush)
 
 def replace_quotes(input_string):
     # 使用replace方法将双引号替换为单引号
@@ -119,7 +119,7 @@ def download_urls(url_list, name_list, save_root):
         print_url_to_pdf(url, save_root, name)
         time.sleep(5)
 
-
+'''
 url_list =[
     'http://mp.weixin.qq.com/s?__biz=MjM5MzM4MjQwMA==&mid=2657745425&idx=2&sn=e5058c6dea521338ff3359bbc2100e97&chksm=bd0ab37e8a7d3a68dc92ff5d98ef7b9cc4164270d791763f6e2ac47a3fadf80b418043c74f26#rd'
 ]
@@ -128,3 +128,4 @@ name_list = [
 ]
 save_root = 'D:\\web-crawler\\res'
 download_urls(url_list, name_list, save_root)
+'''

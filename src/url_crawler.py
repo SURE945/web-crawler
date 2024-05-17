@@ -148,8 +148,8 @@ def in_pdf(flag):
             time.sleep(5)
 
 def local_print(content, end='\n', flush=True):
-    log_printer.append_to_file(content, end=end, flush=flush)
     print(content, end=end, flush=flush)
+    log_printer.append_to_file(content, end=end, flush=flush)
 
 def update_dates(accounts, flag):
     csv_name = 'data\\dates.csv' if flag == 'offical' else 'data\\dates_test.csv'
