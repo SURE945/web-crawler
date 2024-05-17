@@ -102,7 +102,6 @@ class crawler:
         return False
 
     def get_articles(self, nickname, date, flag, keywords, begin=0, count=5):
-        __record_idx   = 0
         __article_num  = 0
         
         for i in range(begin, count, 5):

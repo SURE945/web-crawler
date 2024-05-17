@@ -1,6 +1,4 @@
 *.csv
-!dates.csv
-!dates_test.csv
 !accounts.csv
 !accounts_test.csv
 !keywords.csv
