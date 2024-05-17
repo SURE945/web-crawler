@@ -3,6 +3,10 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
+def replace_quotes(input_string):
+    # 使用replace方法将双引号替换为单引号
+    output_string = input_string.replace('"', "'")
+    return output_string
 
 def print_url_to_pdf(url, save_root,
                      file_name='demo.pdf',
@@ -95,6 +99,8 @@ def print_url_to_pdf(url, save_root,
 
     driver.maximize_window()
 
+    file_name = replace_quotes(file_name)
+
     #利用js修改网页的title，该title最终就是PDF文件名，
     # 利用js的window.print可以快速调出浏览器打印窗口，避免使用热键ctrl+P
     path = os.path.join(save_root, file_name)
@@ -105,17 +111,17 @@ def print_url_to_pdf(url, save_root,
 
 def download_urls(url_list, name_list, save_root):
     for url, name in zip(url_list, name_list):
-        #print_url_to_pdf(url, save_root, name)
+        print_url_to_pdf(url, save_root, name)
         time.sleep(5)
 
 
 '''
 url_list =[
-    'https://mp.weixin.qq.com/s?__biz=MzUxMjAwNjM2MA==&amp;mid=2247484754&amp;idx=1&amp;sn=a16c3dfa3ce8084164e7ed6bdc5db61a&amp;chksm=f82dd5fab4146db058676f49d1d16c39993ddeb5053e43132363d5651304361d170c37509792&amp;scene=27#wechat_redirect'
+    'http://mp.weixin.qq.com/s?__biz=MjM5MzM4MjQwMA==&mid=2657745425&idx=2&sn=e5058c6dea521338ff3359bbc2100e97&chksm=bd0ab37e8a7d3a68dc92ff5d98ef7b9cc4164270d791763f6e2ac47a3fadf80b418043c74f26#rd'
 ]
 name_list = [
-    'test.pdf'
+    '看：抗战煤矿的5G新革命（组图）.pdf'
 ]
-save_root = 'D:\\web-crawler\\'
+save_root = 'D:\\web-crawler\\res'
 download_urls(url_list, name_list, save_root)
 '''

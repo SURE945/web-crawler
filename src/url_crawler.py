@@ -12,8 +12,8 @@ import re
 save_root = 'D:\\web-crawler\\res\\'
 article_data  = []
 __latest_date = []
-check_article_num = 10 # 查看前多少篇文章
-max_article_num = 5 # 检索到的文章最大的数量
+check_article_num = 50 # 查看前多少篇文章
+max_article_num = 50 # 检索到的文章最大的数量
 
 class ArtInfo(object):
     def __init__(self, title, url, date):
@@ -74,8 +74,8 @@ def contains_any_keyword(string, keywords):
     return False
 
 def get_articles(nickname, date, flag, keywords, begin=0, count=5):
-    __record_idx = 0
-    __article_num = 0
+    __record_idx   = 0
+    __article_num  = 0
     __article_data = []
     
     for i in range(begin, count, 5):
@@ -99,7 +99,11 @@ def get_articles(nickname, date, flag, keywords, begin=0, count=5):
                     if 'app_msg_list' in msg_json.keys():
                         for item in msg_json.get('app_msg_list'):
                             if item.get('create_time') <= date:
-                                break
+                                in_csv("data\\test\\" + nickname + ".csv", __article_data)
+                                if __record_idx == 0:
+                                    __record_idx = 1
+                                    __latest_date.append(date)
+                                return
                             if __record_idx == 0:
                                 __latest_date.append(str(item.get('create_time')))
                                 __record_idx = 1
@@ -121,7 +125,6 @@ def get_articles(nickname, date, flag, keywords, begin=0, count=5):
             raise Exception(f'获取公众号{nickname}的文章失败，e={traceback.format_exc()}')
 
         time.sleep(random.randint(1,10))
-    in_csv("data\\test\\" + nickname + ".csv", __article_data)
 
 def in_csv(title, data_set):
     with open(title, 'w+', newline='',encoding='utf-8') as f:
