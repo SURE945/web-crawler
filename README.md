@@ -1,7 +1,7 @@
 # web-crawler
 Crawl articles on wechat public accounts
 
-version: 0.2
+version: 0.3, refactor using class
 
 1. pdf_printer.py
 
