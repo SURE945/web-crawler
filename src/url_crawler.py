@@ -139,6 +139,8 @@ class crawler:
                                 if __article_num >= self.max_article_num:
                                     break
                         else:
+                            reversed_list = list(reversed(self.article_data))
+                            self.in_csv("data\\test\\" + nickname + ".csv", reversed_list)
                             self.local_print("访问被限制, end")
                             return
                     __end = True
