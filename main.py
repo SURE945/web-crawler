@@ -26,7 +26,7 @@ def main():
 
     for i in range(len(csv_data)):
         # 2. get accounts last date
-        crawler_obj = url_crawler.crawler(accounts[i])
+        crawler_obj = url_crawler.crawler(accounts[i], flag)
         # 3. get articles
         crawler_obj.crawl(accounts[i], keywords, flag)
         # 4. print to pdf
