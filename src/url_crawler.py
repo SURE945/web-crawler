@@ -27,8 +27,8 @@ class crawler:
         self.__latest_date = []
         self.check_article_num = 50 # 查看前多少篇文章
         self.max_article_num = 50 # 检索到的文章最大的数量
-        self.cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; wxuin=13167235767384; mm_lang=zh_CN; _clck=3915678078|1|flx|0; uuid=7fdcdb020d55894e4d13ba96ff39e491; rand_info=CAESILbhhg/eTBIuqijd+jpkBXvuwBpDxsxNI62bdHkClvbZ; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=sYJSeV80jHWRTUonihKVXESGxUH8HU1elRPMvNPaLKQoMq36fRS5cDpij4gIvW4K; slave_sid=NFRzZnhXU1Ywb3dfWFFRX3ZYbEdJRXlUUlJ6N0ZTWDdSaVY0YnJuOGpia1hnNm1vemxRSllDRldFMXJGcjVpVWxrbXNSY1A1dFNCOFQ4c2txY0dCcDdlTDU2QnRyaWdaaXlhcVFCcHRiX1VBOUFYbHFTdXFVeTVSdzdEZ2J3cjFKQmdKWTk1VWxUTkR3UEtO; slave_user=gh_d23bfd7b43a5; xid=4b1ed1a8a0b1c892e0adcb64a485d344; _clsk=1h3fwl0|1716168260691|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
-        self.token  = "1108759460"
+        self.cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; wxuin=13167235767384; mm_lang=zh_CN; _clck=3915678078|1|fm1|0; uuid=a910c24af576796a2363438cb484c078; rand_info=CAESIJLFQYMAnfNm6dnPyhCO76OlIXiY+NIepn2FikxK40i+; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=JtoDA/0Iayi23YPIXlGxMNxaXSGqmjUI4PSXgwNELlS5o4QbgaQHdUImju9blXcA; slave_sid=Q2ZMM0psejhjRzBXV0tFS2tVSnZaZlpfRWxZajJBcmcwQk05MktBUlZnQkJEeWlfdkl6U3dnYjFUTlZHY0hvOXNPZjhQTW94ZWVmX1NhTGxWVTVSQlhUR2YybEU2TDhFdjJnTjlIUEFWejRUQjA0ODB4MEtPQldObTlPOGZ1cWpVSUw5NFgyMWpvM1Q2bWg0; slave_user=gh_d23bfd7b43a5; xid=eda6b43667d29327741d2c8e55de9586; _clsk=w9z8mq|1716535658496|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
+        self.token  = "44761810"
         self.__session = requests.Session()
         self.__params = {
             "lang": "zh_CN",
