@@ -3,9 +3,11 @@ from src import file_reader
 from src import log_printer
 import sys
 
-accounts_csv = 'D:\\web-crawler\\data\\accounts.csv'
-accounts_test_csv = 'D:\\web-crawler\\data\\accounts_test.csv'
-keywords_csv = 'D:\\web-crawler\\data\\keywords.csv'
+theme = 'iot'
+
+accounts_csv      = 'D:\\web-crawler\\data\\' + theme + '\\accounts.csv'
+accounts_test_csv = 'D:\\web-crawler\\data\\' + theme + '\\accounts_test.csv'
+keywords_csv      = 'D:\\web-crawler\\data\\' + theme + '\\keywords.csv'
 
 def main():
     # 0. check parameters
@@ -26,7 +28,7 @@ def main():
 
     for i in range(len(csv_data)):
         # 2. get accounts last date
-        crawler_obj = url_crawler.crawler(accounts[i], flag)
+        crawler_obj = url_crawler.crawler(accounts[i], theme, flag)
         # 3. get articles
         crawler_obj.crawl(accounts[i], keywords, flag)
         # 4. print to pdf

@@ -18,26 +18,27 @@ class ArtInfo(object):
         self.date = date
 
 class crawler:
-    def __init__(self, nickname, flag):
+    def __init__(self, nickname, theme, flag):
         self.article_data  = []
         self.__headers = {
             "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         }
-        self.save_root = 'D:\\web-crawler\\res\\'
+        self.save_root = 'D:\\web-crawler\\' + theme + '\\res\\'
         self.__latest_date = []
-        self.check_article_num = 50 # 查看前多少篇文章
-        self.max_article_num = 50 # 检索到的文章最大的数量
-        self.cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; wxuin=13167235767384; mm_lang=zh_CN; _clck=3915678078|1|fm1|0; uuid=a910c24af576796a2363438cb484c078; rand_info=CAESIJLFQYMAnfNm6dnPyhCO76OlIXiY+NIepn2FikxK40i+; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=JtoDA/0Iayi23YPIXlGxMNxaXSGqmjUI4PSXgwNELlS5o4QbgaQHdUImju9blXcA; slave_sid=Q2ZMM0psejhjRzBXV0tFS2tVSnZaZlpfRWxZajJBcmcwQk05MktBUlZnQkJEeWlfdkl6U3dnYjFUTlZHY0hvOXNPZjhQTW94ZWVmX1NhTGxWVTVSQlhUR2YybEU2TDhFdjJnTjlIUEFWejRUQjA0ODB4MEtPQldObTlPOGZ1cWpVSUw5NFgyMWpvM1Q2bWg0; slave_user=gh_d23bfd7b43a5; xid=eda6b43667d29327741d2c8e55de9586; _clsk=w9z8mq|1716535658496|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
-        self.token  = "44761810"
+        self.check_article_num = 10 # 查看前多少篇文章
+        self.max_article_num = 10 # 检索到的文章最大的数量
+        self.cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; wxuin=13167235767384; mm_lang=zh_CN; uuid=9fe8144501a87995991412a413070486; _clck=3915678078|1|fm5|0; rand_info=CAESIL9b98rIF/f1hALXfKxurxvf1PH173OOIhf4xr6h4I8Z; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=Wef2BQ1Fh0IDhFUQnhQOK1IXxh2ZuCQyVAXaFF3uLZAJh2gFxrewLITU8Q8Qf36Y; slave_sid=NXJLVXFTTDg1ekRXeTBNY0cwdGhJZUdtaEdTcXViaFcyOFVKcFI5V0ZTY1ZCeFRBczVqN2lyMDBhTU9adnl5aG9LRFp1ZDVjZjdzOWNZVVllcGNBMDlsZFo2WHVMMmtuRkFxbEN5U0J0cXZ5cXBRZDNpODFwYjJ1a1oxbG1BTGJyMmlUOWNpRmxkNzdGZHpt; slave_user=gh_d23bfd7b43a5; xid=3d77981565f97a386a9c2e5b93097952; _clsk=1513a0r|1716863795876|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
+        self.token  = "1200714684"
         self.__session = requests.Session()
         self.__params = {
             "lang": "zh_CN",
             "f": "json",
         }
+        self.__theme = theme
         if (flag == 'offical'):
-            self.last_date = self.check_and_modify_csv("data\\test\\" + nickname + ".csv")
+            self.last_date = self.check_and_modify_csv("data\\" + self.__theme + "\\test\\" + nickname + ".csv")
         else:
-            self.last_date = self.check_and_modify_csv("data\\test\\test.csv")
+            self.last_date = self.check_and_modify_csv("data\\" + self.__theme + "\\test\\test.csv")
 
     def check_and_modify_csv(self, file_path):
         default_date = '1671546449'
@@ -132,9 +133,9 @@ class crawler:
                                 if item.get('create_time') <= date:
                                     reversed_list = list(reversed(self.article_data))
                                     if flag=='offical':
-                                        self.in_csv("data\\test\\" + nickname + ".csv", reversed_list)
+                                        self.in_csv("data\\" + self.__theme + "\\test\\" + nickname + ".csv", reversed_list)
                                     else:
-                                        self.in_csv("data\\test\\test.csv", reversed_list)
+                                        self.in_csv("data\\" + self.__theme + "\\test\\test.csv", reversed_list)
                                     self.local_print("end")
                                     return
                                 #print(item.get('title'))
@@ -147,9 +148,9 @@ class crawler:
                         else:
                             reversed_list = list(reversed(self.article_data))
                             if flag=='offical':
-                                self.in_csv("data\\test\\" + nickname + ".csv", reversed_list)
+                                self.in_csv("data\\" + self.__theme + "\\test\\" + nickname + ".csv", reversed_list)
                             else:
-                                self.in_csv("data\\test\\test.csv", reversed_list)
+                                self.in_csv("data\\" + self.__theme + "\\test\\test.csv", reversed_list)
                             self.local_print("访问被限制, end")
                             return
                     __end = True
@@ -159,9 +160,9 @@ class crawler:
             time.sleep(random.randint(1,10))
         reversed_list = list(reversed(self.article_data))
         if flag=='offical':
-            self.in_csv("data\\test\\" + nickname + ".csv", reversed_list)
+            self.in_csv("data\\" + self.__theme + "\\test\\" + nickname + ".csv", reversed_list)
         else:
-            self.in_csv("data\\test\\test.csv", reversed_list)
+            self.in_csv("data\\" + self.__theme + "\\test\\test.csv", reversed_list)
         self.local_print("end")
 
     def in_csv(self, title, data_set):

@@ -1,7 +1,7 @@
 # web-crawler
 Crawl articles on wechat public accounts
 
-version: 0.3, refactor using class
+version: 0.4, support multiple themes
 
 1. pdf_printer.py
 
