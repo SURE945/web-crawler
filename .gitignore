@@ -1,7 +1,3 @@
-*.csv
-!accounts.csv
-!accounts_test.csv
-!keywords.csv
 *.pdf
 __pycache__/
 log.txt
