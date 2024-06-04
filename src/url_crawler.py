@@ -27,8 +27,8 @@ class crawler:
         self.__latest_date = []
         self.check_article_num = 50 # 查看前多少篇文章
         self.max_article_num = 50 # 检索到的文章最大的数量
-        self.cookie = "RK=DRnpuR+GVf; ptcz=4de7f31efbd92a74738ca320fc7d0c73f5cb056b476a3c606c9735325d28bdf3; ua_id=xsUB8PowLcEhzJswAAAAAFlkeAAzDyRPbmf33bfylWg=; wxuin=13167235767384; mm_lang=zh_CN; uuid=9fe8144501a87995991412a413070486; _clck=3915678078|1|fm5|0; rand_info=CAESIL9b98rIF/f1hALXfKxurxvf1PH173OOIhf4xr6h4I8Z; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=Wef2BQ1Fh0IDhFUQnhQOK1IXxh2ZuCQyVAXaFF3uLZAJh2gFxrewLITU8Q8Qf36Y; slave_sid=NXJLVXFTTDg1ekRXeTBNY0cwdGhJZUdtaEdTcXViaFcyOFVKcFI5V0ZTY1ZCeFRBczVqN2lyMDBhTU9adnl5aG9LRFp1ZDVjZjdzOWNZVVllcGNBMDlsZFo2WHVMMmtuRkFxbEN5U0J0cXZ5cXBRZDNpODFwYjJ1a1oxbG1BTGJyMmlUOWNpRmxkNzdGZHpt; slave_user=gh_d23bfd7b43a5; xid=3d77981565f97a386a9c2e5b93097952; _clsk=1513a0r|1716863795876|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
-        self.token  = "1200714684"
+        self.cookie = "RK=uQmp6z+tS/; ptcz=b81b78f64c1c6ebbefb28e5be19b795e7228f47e7f94cfa90cfbb8e19a50c1a6; pac_uid=0_e512eac24f90a; iip=0; pgv_pvid=6462161322; _qimei_uuid42=17b0e0a1e2f1007cc0eaa12740ee2e35efabe39a41; _qimei_fingerprint=cd838bb3f668d5a678cc7c3f05c52027; _qimei_q36=; _qimei_h38=8f9557bdc0eaa12740ee2e3502000000d17b0e; ua_id=hzpdFGya3ZJMGfJuAAAAAFHE1duewBS8PoBQDz7W-tM=; wxuin=11936855256056; mm_lang=zh_CN; _clck=3915678078|1|fmc|0; uuid=d44f30828450568a7236effb509e28c9; rand_info=CAESICb3nuCf5fkBPMS0tstxOvwKUVBL+NiBaXxdvA2QWoJ7; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=x8jGskd1+Ft+VrShHGKtbd0O0CVHAGvrAPalAiQz9K+dtdjVtrY6NRzDg97M2SLH; slave_sid=R0Z0NkJyQWhLbkw5RlZTNGVRQ2FOanllSXhJc1RCNm5fUzNsQXREd1o4OTlheGlYaXBrdDZRXzA4dHE2VDQ1T0FyRTJtTHJ0N1ByRVlxekYzTmQzTDN3RGtDbVJkOWk0emZ6YnVTUnNFMU1HTjhFN3hNQTVPWXhyUWRjSEw0YVVQQnhhSXY1RjI1M3V3RTZC; slave_user=gh_d23bfd7b43a5; xid=82ac14936a040ebe9907a99bd18b406c; _clsk=gfbqhv|1717466540343|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
+        self.token  = "1833902704"
         self.__session = requests.Session()
         self.__params = {
             "lang": "zh_CN",
@@ -56,7 +56,7 @@ class crawler:
             with open(file_path, mode='r', encoding='utf-8') as file:
                 reader = csv.reader(file)
                 rows = list(reader)
-            
+
             # 判断文件中的行数
             if len(rows) == 1:
                 # print("文件存在，且只有一行，不进行操作。")
@@ -107,7 +107,7 @@ class crawler:
 
     def get_articles(self, nickname, date, flag, keywords, begin=0, count=5):
         __article_num  = 0
-        
+
         for i in range(begin, count, 5):
             __end = False
             self.local_print((i / 5 + 1), end='', flush=True)
@@ -191,4 +191,3 @@ class crawler:
         self.__params["fakeid"] = fakeid
 
         self.get_articles(nickname, int(self.last_date), flag, keywords, 0, self.check_article_num)
-        
