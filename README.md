@@ -1,7 +1,7 @@
 # web-crawler
 Crawl articles on wechat public accounts
 
-version: 0.4, support multiple themes
+version: 0.5, add json parser
 
 1. pdf_printer.py
 
@@ -19,3 +19,18 @@ version: 0.4, support multiple themes
 3. file_reader.py
 
     source - chatgpt
+
+4. json_parser.py
+
+    source - chatgpt
+
+format example:
+```json
+{
+    "theme": "iot",
+    "check_article_num": 50,
+    "max_article_num": 50,
+    "cookie": "RK=uQmp6z+tS/xxx/record",
+    "token": "1434767217"
+}
+```

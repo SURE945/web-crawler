@@ -18,17 +18,17 @@ class ArtInfo(object):
         self.date = date
 
 class crawler:
-    def __init__(self, nickname, theme, flag):
+    def __init__(self, nickname, theme, flag, cookie, token, check_ariticle_num, max_article_num):
         self.article_data  = []
         self.__headers = {
             "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         }
         self.save_root = 'D:\\web-crawler\\res\\' + theme + '\\'
         self.__latest_date = []
-        self.check_article_num = 50 # 查看前多少篇文章
-        self.max_article_num = 50 # 检索到的文章最大的数量
-        self.cookie = "RK=uQmp6z+tS/; ptcz=b81b78f64c1c6ebbefb28e5be19b795e7228f47e7f94cfa90cfbb8e19a50c1a6; pac_uid=0_e512eac24f90a; iip=0; pgv_pvid=6462161322; _qimei_uuid42=17b0e0a1e2f1007cc0eaa12740ee2e35efabe39a41; _qimei_fingerprint=cd838bb3f668d5a678cc7c3f05c52027; _qimei_q36=; _qimei_h38=8f9557bdc0eaa12740ee2e3502000000d17b0e; ua_id=hzpdFGya3ZJMGfJuAAAAAFHE1duewBS8PoBQDz7W-tM=; wxuin=11936855256056; mm_lang=zh_CN; _clck=3915678078|1|fmf|0; uuid=a574491bb861b4f5d995cae311a5d4d1; rand_info=CAESIEodGXhJEOXLRXqzoeH6EC+kal9DcYXQoNaxrdx5pRgI; slave_bizuin=3915678078; data_bizuin=3915678078; bizuin=3915678078; data_ticket=IBDStbWkDnx0hdOhnTzB8UfTX8Dbq4ufGKsZPxZqtEm0c9Qac3FZ06xZidaEKsgA; slave_sid=QnJTa2FraTYxNndWdnZTU0VicjFtbWs4UEh3djBkdXNmVGlCUjF0YUZVUkpLTExRMWdZVlZzZjFxT0FDOUpDelpEQ0gyUWNTT3dkMXJORHlSdmhQeWVRWWN1T0JESDRYVzFGcF9Za0ptbkdHTXc1WEpaZkE1S1FPZnlBOTRJYWtIVXRrc1lYQXZNbnFGcjlr; slave_user=gh_d23bfd7b43a5; xid=e5677947d6b05eb72a4e219836548d6c; _clsk=u3z027|1717731840670|2|1|mp.weixin.qq.com/weheat-agent/payload/record"
-        self.token  = "1434767217"
+        self.check_article_num = check_ariticle_num
+        self.max_article_num = max_article_num
+        self.cookie = cookie
+        self.token  = token
         self.__session = requests.Session()
         self.__params = {
             "lang": "zh_CN",
