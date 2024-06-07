@@ -3,7 +3,7 @@ from src import file_reader
 from src import log_printer
 import sys
 
-theme = 'ntn'
+theme = 'iot'
 
 accounts_csv      = 'D:\\web-crawler\\data\\' + theme + '\\accounts.csv'
 accounts_test_csv = 'D:\\web-crawler\\data\\' + theme + '\\accounts_test.csv'
