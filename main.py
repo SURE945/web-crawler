@@ -10,7 +10,7 @@ def main():
         print("param error! please input test or offical")
         return
     flag = sys.argv[1]
-    if (flag != 'test' and flag != 'offical'):
+    if (flag != 'test' and flag != 'official'):
         print("param error! please input test or offical")
         return
 
@@ -27,7 +27,7 @@ def main():
     # 1. initialize
     log_printer.initialize_file()
     keywords = file_reader.read_csv_column_as_strings(keywords_csv, 0)
-    csv_file = accounts_csv if flag == 'offical' else accounts_test_csv
+    csv_file = accounts_csv if flag == 'official' else accounts_test_csv
     csv_data = file_reader.read_csv_file(csv_file)
     accounts = [row[0] for row in csv_data]
 
