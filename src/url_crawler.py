@@ -35,7 +35,7 @@ class crawler:
             "f": "json",
         }
         self.__theme = theme
-        if (flag == 'offical'):
+        if (flag == 'official'):
             self.last_date = self.check_and_modify_csv("data\\" + self.__theme + "\\test\\" + nickname + ".csv")
         else:
             self.last_date = self.check_and_modify_csv("data\\" + self.__theme + "\\test\\test.csv")
@@ -132,7 +132,7 @@ class crawler:
                                 # 还没找到上限，先到了时间
                                 if item.get('create_time') <= date:
                                     reversed_list = list(reversed(self.article_data))
-                                    if flag=='offical':
+                                    if flag=='official':
                                         self.in_csv("data\\" + self.__theme + "\\test\\" + nickname + ".csv", reversed_list)
                                     else:
                                         self.in_csv("data\\" + self.__theme + "\\test\\test.csv", reversed_list)
@@ -147,7 +147,7 @@ class crawler:
                                     break
                         else:
                             reversed_list = list(reversed(self.article_data))
-                            if flag=='offical':
+                            if flag=='official':
                                 self.in_csv("data\\" + self.__theme + "\\test\\" + nickname + ".csv", reversed_list)
                             else:
                                 self.in_csv("data\\" + self.__theme + "\\test\\test.csv", reversed_list)
@@ -159,7 +159,7 @@ class crawler:
 
             time.sleep(random.randint(1,10))
         reversed_list = list(reversed(self.article_data))
-        if flag=='offical':
+        if flag=='official':
             self.in_csv("data\\" + self.__theme + "\\test\\" + nickname + ".csv", reversed_list)
         else:
             self.in_csv("data\\" + self.__theme + "\\test\\test.csv", reversed_list)
@@ -173,7 +173,7 @@ class crawler:
                 writer.writerow([info.date, info.title, info.url])
 
     def in_pdf(self, flag):
-        if (flag == 'offical'):
+        if (flag == 'official'):
             for info in self.article_data:
                 pdf_printer.print_url_to_pdf(info.url, self.save_root, info.title)
                 time.sleep(5)
@@ -182,7 +182,7 @@ class crawler:
         print(content, end=end, flush=flush)
         log_printer.append_to_file(content, end=end, flush=flush)
 
-    def crawl(self, nickname, keywords, flag='offical'):
+    def crawl(self, nickname, keywords, flag=''):
         self.__headers["Cookie"] = self.cookie
         self.__params["token"] = self.token
 

@@ -7,11 +7,11 @@ import sys
 def main():
     # 0. check parameters
     if len(sys.argv) != 2:
-        print("param error! please input test or offical")
+        print("param error! please input test or official")
         return
     flag = sys.argv[1]
     if (flag != 'test' and flag != 'official'):
-        print("param error! please input test or offical")
+        print("param error! please input test or official")
         return
 
     parsed_data = json_parser.parse_json_file("config.json")
